@@ -17,12 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
 
@@ -30,7 +30,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/gradle-build-action@v4
 
       - name: Run JVM tests
         run: ./gradlew jvmTest --no-daemon --stacktrace
@@ -48,12 +48,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
 
@@ -61,7 +61,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/gradle-build-action@v4
 
       - name: Run JS tests
         run: ./gradlew jsTest --no-daemon --stacktrace
@@ -76,15 +76,15 @@ jobs:
 
   test-macos:
     name: Test macOS & iOS
-    runs-on: macos-13  # 使用 Intel Mac 以支持更多架构
+    runs-on: macos-16
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
 
@@ -92,13 +92,20 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/gradle-build-action@v4
+
+      - name: Cache Kotlin/Native
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: konan-${{ runner.os }}-${{ hashFiles('**/build.gradle.kts', '**/*.gradle.kts') }}
+          restore-keys: konan-${{ runner.os }}-
 
       - name: Run macOS X64 tests
         run: ./gradlew macosX64Test --no-daemon --stacktrace
 
       - name: Run iOS Simulator tests
-        run: ./gradlew iosSimulatorArm64Test --no-daemon --stacktrace || true
+        run: ./gradlew iosSimulatorArm64Test --no-daemon --stacktrace
 
       - name: Upload test results
         if: always()
@@ -110,15 +117,15 @@ jobs:
 
   test-macos-arm:
     name: Test macOS ARM64
-    runs-on: macos-14  # Apple Silicon
+    runs-on: macos-15-arm64
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
 
@@ -126,7 +133,14 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/gradle-build-action@v4
+
+      - name: Cache Kotlin/Native
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: konan-${{ runner.os }}-${{ hashFiles('**/build.gradle.kts', '**/*.gradle.kts') }}
+          restore-keys: konan-${{ runner.os }}-
 
       - name: Run macOS ARM64 tests
         run: ./gradlew macosArm64Test --no-daemon --stacktrace
@@ -144,12 +158,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
 
@@ -157,7 +171,14 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/gradle-build-action@v4
+
+      - name: Cache Kotlin/Native
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: konan-${{ runner.os }}-${{ hashFiles('**/build.gradle.kts', '**/*.gradle.kts') }}
+          restore-keys: konan-${{ runner.os }}-
 
       - name: Run Linux X64 tests
         run: ./gradlew linuxX64Test --no-daemon --stacktrace
@@ -175,17 +196,24 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/gradle-build-action@v4
+
+      - name: Cache Kotlin/Native
+        uses: actions/cache@v4
+        with:
+          path: ~/.konan
+          key: konan-${{ runner.os }}-${{ hashFiles('**/build.gradle.kts', '**/*.gradle.kts') }}
+          restore-keys: konan-${{ runner.os }}-
 
       - name: Run Windows tests
         run: ./gradlew mingwX64Test --no-daemon --stacktrace
@@ -202,15 +230,15 @@ jobs:
   build:
     name: Build all targets
     runs-on: ubuntu-latest
-    needs: [test-jvm, test-js, test-linux]
+    needs: [test-jvm, test-js, test-macos, test-macos-arm, test-linux, test-windows]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
 
@@ -218,7 +246,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/gradle-build-action@v4
 
       - name: Build all targets
         run: ./gradlew build --no-daemon --stacktrace
@@ -239,12 +267,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v5
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'temurin'
           cache: 'gradle'
 
@@ -252,7 +280,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v3
+        uses: gradle/gradle-build-action@v4
 
       - name: Run detekt (if configured)
         run: ./gradlew detekt --no-daemon || true
