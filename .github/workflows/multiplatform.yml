@@ -1,0 +1,41 @@
+name: Multiplatform CI
+
+on: [push, pull_request]
+
+jobs:
+  test-jvm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test JVM
+        run: ./gradlew jvmTest
+
+  test-js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test JS
+        run: ./gradlew jsTest
+
+  test-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test macOS
+        run: ./gradlew macosX64Test macosArm64Test
+      - name: Test iOS
+        run: ./gradlew iosSimulatorArm64Test
+
+  test-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test Linux
+        run: ./gradlew linuxX64Test
+
+  test-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Test Windows
+        run: ./gradlew mingwX64Test
