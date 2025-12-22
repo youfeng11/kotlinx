@@ -30,7 +30,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Run JVM tests
         run: ./gradlew jvmTest --no-daemon --stacktrace
@@ -61,7 +61,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Run JS tests
         run: ./gradlew jsTest --no-daemon --stacktrace
@@ -92,7 +92,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Cache Kotlin/Native
         uses: actions/cache@v4
@@ -133,7 +133,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Cache Kotlin/Native
         uses: actions/cache@v4
@@ -171,7 +171,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Cache Kotlin/Native
         uses: actions/cache@v4
@@ -206,7 +206,7 @@ jobs:
           cache: 'gradle'
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Cache Kotlin/Native
         uses: actions/cache@v4
@@ -246,7 +246,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Build all targets
         run: ./gradlew build --no-daemon --stacktrace
@@ -280,7 +280,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Run detekt (if configured)
         run: ./gradlew detekt --no-daemon || true
