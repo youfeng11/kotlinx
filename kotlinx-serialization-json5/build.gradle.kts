@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.serialization)
 }
 
+version = "0.1.0"
+
 kotlin {
     explicitApi()
 

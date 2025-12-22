@@ -5,7 +5,6 @@ plugins {
 
 allprojects {
     group = "com.youfeng.kotlinx"
-    version = "0.1.0-alpha"
 
     repositories {
         mavenCentral()
