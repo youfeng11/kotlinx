@@ -16,17 +16,11 @@
 
 ---
 
-<!-- ## 📦 安装 -->
-<!--  -->
-<!-- > 依赖示例（以 Gradle Kotlin DSL 为例） -->
-<!--  -->
-<!-- ```kotlin -->
-<!-- dependencies { -->
-<!--     implementation("your.group:kotlinx-serialization-json5:<version>") -->
-<!-- } -->
-<!-- ``` -->
-<!--  -->
-<!-- --- -->
+## 📦 安装
+
+请查看[JitPack](https://www.jitpack.io/#youfeng11/kotlinx-serialization-json5)
+
+---
 
 ## 🚀 快速开始
 
