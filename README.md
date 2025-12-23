@@ -24,6 +24,8 @@
 
 ## 🚀 快速开始
 
+详细使用方式请参考 [kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization)
+
 ### 定义数据类
 
 ```kotlin
@@ -64,7 +66,7 @@ println(user)
   * `@Serializable`
   * `SerialDescriptor`
   * 编解码模型
-* 扩展对 JSON5 语法的支持
+* 扩展对 JSON5 的语法支持
 
 如果你已经在项目中使用了 `kotlinx.serialization.json.Json`，迁移成本几乎为零。
 
@@ -88,6 +90,7 @@ println(user)
 
   * JVM
   * Android
+  * 其他平台
 
 > 由于其他平台缺乏测试，不能保证其兼容性。
 
