@@ -2,30 +2,37 @@ rootProject.name = "youfeng_kotlinx_serialization_json5"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
-    repositories {
-        google {
-            mavenContent {
-                includeGroupAndSubgroups("androidx")
-                includeGroupAndSubgroups("com.android")
-                includeGroupAndSubgroups("com.google")
-            }
-        }
-        mavenCentral()
-        gradlePluginPortal()
-    }
+  repositories {
+    gradlePluginPortal()
+    google()
+    mavenCentral()
+    maven { setUrl("https://maven.aliyun.com/repository/central") }
+    maven { setUrl("https://maven.aliyun.com/repository/jcenter") }
+    maven { setUrl("https://maven.aliyun.com/repository/google") }
+    maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin") }
+    maven { setUrl("https://maven.aliyun.com/repository/public") }
+    maven { setUrl("https://jitpack.io") }
+    maven { setUrl("https://maven.aliyun.com/nexus/content/groups/public/") }
+    maven { setUrl("https://maven.aliyun.com/nexus/content/repositories/jcenter") }
+    maven { setUrl("https://maven.scijava.org/content/repositories/public/") }
+    maven { setUrl("https://androidx.dev/storage/compose-compiler/repository/") }
+  }
 }
 
 dependencyResolutionManagement {
-    repositories {
-        google {
-            mavenContent {
-                includeGroupAndSubgroups("androidx")
-                includeGroupAndSubgroups("com.android")
-                includeGroupAndSubgroups("com.google")
-            }
-        }
-        mavenCentral()
-    }
+  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+  repositories {
+    google()
+    mavenCentral()
+    maven("https://jitpack.io")
+    maven { setUrl("https://maven.aliyun.com/repository/central") }
+    maven { setUrl("https://maven.aliyun.com/repository/jcenter") }
+    maven { setUrl("https://maven.aliyun.com/repository/google") }
+    maven { setUrl("https://maven.aliyun.com/repository/gradle-plugin") }
+    maven { setUrl("https://maven.aliyun.com/repository/public") }
+    maven { setUrl("https://maven.scijava.org/content/repositories/public/") }
+    maven { setUrl("https://androidx.dev/storage/compose-compiler/repository/") }
+  }
 }
 
 include(":kotlinx-serialization-json5")

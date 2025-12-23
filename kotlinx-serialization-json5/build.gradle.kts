@@ -20,7 +20,15 @@ kotlin {
     }
 
     // JVM 平台
-    jvm()
+    jvm {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
+
+        testRuns["test"].executionTask.configure {
+            useJUnitPlatform()
+        }
+    }
 
     // JavaScript 平台
     js(IR) {

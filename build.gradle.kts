@@ -6,10 +6,6 @@ plugins {
 
 allprojects {
     group = "com.youfeng.kotlinx"
-
-    repositories {
-        mavenCentral()
-    }
 }
 
 // 配置所有子项目
