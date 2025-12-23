@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
     alias(libs.plugins.serialization)
 }
 
@@ -8,15 +9,18 @@ version = "0.1.0"
 kotlin {
     explicitApi()
 
-    // JVM 平台
-    jvm {
+    androidLibrary {
+        namespace = "com.youfeng.kotlinx.serialization.json5"
+        compileSdk = 36
+        minSdk = 24
+
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
         }
-        testRuns["test"].executionTask.configure {
-            useJUnitPlatform()
-        }
     }
+
+    // JVM 平台
+    jvm()
 
     // JavaScript 平台
     js(IR) {
