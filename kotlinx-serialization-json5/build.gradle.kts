@@ -13,6 +13,10 @@ kotlin {
         namespace = "com.youfeng.kotlinx.serialization.json5"
         compileSdk = 36
         minSdk = 24
+        
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
     }
 
     // JVM 平台
