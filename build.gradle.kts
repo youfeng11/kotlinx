@@ -11,9 +11,4 @@ allprojects {
 // 配置所有子项目
 subprojects {
     apply(plugin = "maven-publish")
-
-    // 配置发布任务
-    tasks.withType<PublishToMavenRepository> {
-        dependsOn(tasks.withType<Sign>())
-    }
 }

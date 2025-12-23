@@ -114,16 +114,14 @@ kotlin {
 }
 
 afterEvaluate {
-    // 强制配置 publishing 块，确保所有出版物都使用正确的 Group ID
+    // 强制配置 publishing 块
     publishing {
         // 遍历所有由 Kotlin Multiplatform 插件自动创建的出版物
         publications.withType<MavenPublication>().configureEach {
-            // 将出版物的 Group ID 强制设置为根项目的 Group ID
-            // 这是修复 KMP 元数据 Group ID 派生错误的常见做法
+            // 确保 Group ID 正确 (尽管在根项目设置了，这里是双重保险)
             groupId = rootProject.group.toString() 
-            
-            // 确保版本号也使用根项目的版本号，以防万一
             version = rootProject.version.toString() 
+            artifactId = rootProject.name
         }
     }
 }
