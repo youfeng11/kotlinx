@@ -5,7 +5,7 @@ plugins {
 }
 
 allprojects {
-    group = "com.github.youfeng"
+    group = "com.github.youfeng11"
 }
 
 // 配置所有子项目

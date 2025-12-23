@@ -77,11 +77,11 @@ kotlin {
     // Native 平台 - Windows
     mingwX64()
 
-    /*/ Native 平台 - Android Native
+    // Native 平台 - Android Native
     androidNativeArm32()
     androidNativeArm64()
     androidNativeX86()
-    androidNativeX64()*/
+    androidNativeX64()
 
     sourceSets {
         // ===== Common =====
@@ -118,7 +118,6 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             groupId = project.group.toString()
-            artifactId = "kotlinx-serialization-json5"
             version = project.version.toString()
 
             pom {
