@@ -5,7 +5,7 @@ plugins {
 }
 
 allprojects {
-    group = "com.youfeng.kotlinx"
+    group = "com.github.youfeng"
 }
 
 // 配置所有子项目
