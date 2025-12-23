@@ -39,7 +39,9 @@ kotlin {
                 }
             }
         }
-        nodejs()
+        nodejs {
+            includeNodeModules.set(false)
+        }
     }
 
     // WebAssembly

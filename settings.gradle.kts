@@ -16,6 +16,8 @@ dependencyResolutionManagement {
     google()
     mavenCentral()
     maven("https://jitpack.io")
+    maven { url = uri("https://nodejs.org/dist") } 
+    maven { url = uri("https://repo.gradle.org/gradle/libs") }
   }
 }
 
