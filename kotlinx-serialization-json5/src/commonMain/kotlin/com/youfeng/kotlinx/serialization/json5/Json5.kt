@@ -117,23 +117,23 @@ public class Json5Builder {
 
     internal fun build(): Json5 {
         val jsonDelegate = Json {
-            this.encodeDefaults = this@Json5Builder.encodeDefaults
-            this.ignoreUnknownKeys = this@Json5Builder.ignoreUnknownKeys
-            this.isLenient = this@Json5Builder.isLenient
-            this.allowStructuredMapKeys = this@Json5Builder.allowStructuredMapKeys
-            this.allowSpecialFloatingPointValues = this@Json5Builder.allowSpecialFloatingPointValues
-            this.coerceInputValues = this@Json5Builder.coerceInputValues
-            this.classDiscriminator = this@Json5Builder.classDiscriminator
-            this.useArrayPolymorphism = this@Json5Builder.useArrayPolymorphism
-            this.serializersModule = this@Json5Builder.serializersModule
+            encodeDefaults = this@Json5Builder.encodeDefaults
+            ignoreUnknownKeys = this@Json5Builder.ignoreUnknownKeys
+            isLenient = this@Json5Builder.isLenient
+            allowStructuredMapKeys = this@Json5Builder.allowStructuredMapKeys
+            allowSpecialFloatingPointValues = this@Json5Builder.allowSpecialFloatingPointValues
+            coerceInputValues = this@Json5Builder.coerceInputValues
+            classDiscriminator = this@Json5Builder.classDiscriminator
+            useArrayPolymorphism = this@Json5Builder.useArrayPolymorphism
+            serializersModule = this@Json5Builder.serializersModule
 
             // 格式化输出控制
-            this.prettyPrint = this@Json5Builder.prettyPrint
-            this.prettyPrintIndent = this@Json5Builder.prettyPrintIndent
+            prettyPrint = this@Json5Builder.prettyPrint
+            prettyPrintIndent = this@Json5Builder.prettyPrintIndent
 
             // 强制开启以支持转译后的残留兼容性
-            this.allowTrailingComma = true
-            this.allowComments = true
+            allowTrailingComma = true
+            allowComments = true
         }
 
         // 使用 object 表达式创建匿名子类

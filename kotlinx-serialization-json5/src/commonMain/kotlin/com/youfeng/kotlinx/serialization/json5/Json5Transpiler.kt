@@ -104,21 +104,25 @@ internal class Json5Transpiler(private val input: String) {
                     // 处理引号转义：如果是单引号字符串内部的 '，转成 JSON 后不需要转义
                     // 如果是单引号字符串内部的 "，转成 JSON 后需要变成 \"
                     val escapedChar = input[index]
-                    if (quoteChar == '\'' && escapedChar == '\'') {
-                        // 输入: 'It\'s' -> 输出: "It's" (去除反斜杠)
-                        // 这里直接追加 ' 即可，因为之前已经 append 了 \ (Wait, no)
-                        // 回退上一步的 append('\\') 是低效的。
-                        // 正确逻辑：
-                        // 我们需要决定是否输出反斜杠。
-                        sb.setLength(sb.length - 1) // 撤销刚才的 \
-                        sb.append('\'')
-                    } else if (quoteChar == '\'' && escapedChar == '"') {
-                        // 输入: 'Say "Hi"' -> 输出: "Say \"Hi\""
-                        // 已经是 \ 了，追加 "
-                        sb.append('"')
-                    } else {
-                        // 其他转义直接保留
-                        sb.append(escapedChar)
+                    when (quoteChar) {
+                        '\'' if escapedChar == '\'' -> {
+                            // 输入: 'It\'s' -> 输出: "It's" (去除反斜杠)
+                            // 这里直接追加 ' 即可，因为之前已经 append 了 \ (Wait, no)
+                            // 回退上一步的 append('\\') 是低效的。
+                            // 正确逻辑：
+                            // 我们需要决定是否输出反斜杠。
+                            sb.setLength(sb.length - 1) // 撤销刚才的 \
+                            sb.append('\'')
+                        }
+                        '\'' if escapedChar == '"' -> {
+                            // 输入: 'Say "Hi"' -> 输出: "Say \"Hi\""
+                            // 已经是 \ 了，追加 "
+                            sb.append('"')
+                        }
+                        else -> {
+                            // 其他转义直接保留
+                            sb.append(escapedChar)
+                        }
                     }
                     index++
                 }
@@ -232,7 +236,7 @@ internal class Json5Transpiler(private val input: String) {
                 // ✅ 核心修复：使用 .toLong(16) 将 16 进制字符串转换为 Long，然后转为 String 输出
                 // 确保我们转换的是数字部分 (decaf)，而不是 "0xdecaf"
                 token.substring(2).toLong(16).toString() 
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 token 
             }
         }

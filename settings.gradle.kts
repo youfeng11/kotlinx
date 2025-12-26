@@ -1,3 +1,4 @@
+@file:Suppress("UnstableApiUsage")
 rootProject.name = "youfeng_kotlinx_serialization_json5"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

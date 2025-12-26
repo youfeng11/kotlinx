@@ -18,7 +18,29 @@
 
 ## 📦 安装
 
-请查看[JitPack](https://www.jitpack.io/#youfeng11/kotlinx-serialization-json5)
+Kotlin DSL:
+
+```kotlin
+repositories {
+    maven { url = uri("https://jitpack.io") }
+}
+
+dependencies {
+  implementation("com.github.youfeng11.kotlinx:kotlinx-serialization-json5:[版本]")
+}
+```
+
+Groovy DSL:
+
+```gradle
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    implementation "com.github.youfeng11.kotlinx:kotlinx-serialization-json5:[版本]"
+}
+```
 
 ---
 
